@@ -13,7 +13,11 @@ namespace WatchlistUI
 {
     public partial class GeneralUI : Form
     {
+        List<SettingsModel> settings = new List<SettingsModel>();
         List<ItemModel> items = new List<ItemModel>();
+        List<ItemModel> filteredItems = new List<ItemModel>();
+        private string sortingType;
+        private bool isSortingAscending;
         private bool isCompleted = false;
         private string _firstListName;        
         private string _secondListName;        
@@ -21,14 +25,12 @@ namespace WatchlistUI
         private string _firstListCategory;
         private string _secondListCategory;
         private string _thirdListCategory;
-        private bool _firstListEnabled;
-        private bool _secondListEnabled;
-        private bool _thirdListEnabled;
         private string _currentList;
 
         public GeneralUI()
         {
             InitializeComponent();
+            settings = SqliteDataAccess.LoadSettings();
             GetSettings();
             LoadItemList(_currentList);
             SetUpDatagridDesign();
@@ -36,11 +38,13 @@ namespace WatchlistUI
 
         private void GetSettings()
         {
-            //TODO - Set up sql code
-            _currentList = "FirstList";
-            _firstListName = "Disney";
-            _firstListCategory = "Animation,Live-Action";
-            _firstListEnabled = true;
+            _currentList = settings[6].SettingData;
+            _firstListName = settings[0].SettingData;
+            _firstListCategory = settings[1].SettingData;
+            _secondListName = settings[2].SettingData;
+            _secondListCategory = settings[3].SettingData;
+            _thirdListName = settings[4].SettingData;
+            _thirdListCategory = settings[5].SettingData;
         }
 
         private void SetUpDatagridDesign()
@@ -62,8 +66,34 @@ namespace WatchlistUI
 
         private List<ItemModel> GetTempList(List<ItemModel> items)
         {
-            //TODO - Implement sorting
-            return items.OrderBy(x => x.ID).ToList();
+            if(sortingType == "byTitle" && isSortingAscending)
+            {
+                return items.OrderBy(x => x.Title).ToList();
+            }
+            else if(sortingType == "byTitle" && !isSortingAscending)
+            {
+                return items.OrderByDescending(x => x.Title).ToList();
+            }
+            else if (sortingType == "byScore" && isSortingAscending)
+            {
+                return items.OrderBy(x => x.Score).ToList();
+            }
+            else if (sortingType == "byScore" && !isSortingAscending)
+            {
+                return items.OrderByDescending(x => x.Score).ToList();
+            }
+            else if (sortingType == "byDate" && isSortingAscending)
+            {
+                return items.OrderBy(x => x.Date).ToList();
+            }
+            else if (sortingType == "byDate" && !isSortingAscending)
+            {
+                return items.OrderByDescending(x => x.Date).ToList();
+            }
+            else
+            {
+                return items;
+            }
         }
 
         private void WireUpList(List<ItemModel> temp)
@@ -105,7 +135,7 @@ namespace WatchlistUI
 
         private void btnRoll_Click(object sender, EventArgs e)
         {
-            LotteryUI lotteryUI = new LotteryUI(items, _currentList, this);
+            LotteryUI lotteryUI = new LotteryUI(filteredItems, _currentList, this);
             lotteryUI.Show();
         }
 
@@ -155,6 +185,53 @@ namespace WatchlistUI
             ItemModel item = (ItemModel)dataGridView1.SelectedRows[0].DataBoundItem;
             SqliteDataAccess.DeleteFromList(item, _currentList);
             LoadItemList(_currentList);
+        }
+
+        private void btnSortTitle_Click(object sender, EventArgs e)
+        {
+            if (sortingType != "byTitle")
+            {
+                sortingType = "byTitle";
+                isSortingAscending = true;
+            }
+            else
+            {
+                isSortingAscending = !isSortingAscending;
+            }
+            LoadItemList(_currentList);
+        }
+
+        private void btnSortScore_Click(object sender, EventArgs e)
+        {
+            if (sortingType != "byScore")
+            {
+                sortingType = "byScore";
+                isSortingAscending = false;
+            }
+            else
+            {
+                isSortingAscending = !isSortingAscending;
+            }
+            LoadItemList(_currentList);
+        }
+
+        private void btnSortDate_Click(object sender, EventArgs e)
+        {
+            if (sortingType != "byDate")
+            {
+                sortingType = "byDate";
+                isSortingAscending = false;
+            }
+            else
+            {
+                isSortingAscending = !isSortingAscending;
+            }
+            LoadItemList(_currentList);
+        }
+
+        private void btnFilter_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

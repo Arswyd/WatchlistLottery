@@ -14,11 +14,11 @@ namespace WatchlistLibrary
     {
         public static List<ItemModel> LoadItems(string currentList)
         {
-                using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
-                {
-                    var output = cnn.Query<ItemModel>("select * from " + currentList, new DynamicParameters());
-                    return output.ToList();
-                }
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<ItemModel>("select * from " + currentList, new DynamicParameters());
+                return output.ToList();
+            }
         }
 
         public static void AddItemToList(ItemModel item, string currentList)
@@ -82,6 +82,15 @@ namespace WatchlistLibrary
                     i++;
                 }
                 return id;
+            }
+        }
+
+        public static List<SettingsModel> LoadSettings()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<SettingsModel>("select * from Settings", new DynamicParameters());
+                return output.ToList();
             }
         }
 

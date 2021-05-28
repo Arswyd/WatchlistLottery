@@ -34,6 +34,7 @@ namespace WatchlistUI
             GetSettings();
             LoadItemList(_currentList);
             SetUpDatagridDesign();
+            WireUpCombobox();
         }
 
         private void GetSettings()
@@ -55,6 +56,26 @@ namespace WatchlistUI
             dataGridView1.Columns[2].Width = 40;
             dataGridView1.Columns[3].Width = 100;
             dataGridView1.Columns[4].Width = 40;
+        }
+
+        private void WireUpCombobox()
+        {
+            if (_currentList == "FirstList")
+            {
+                cmbCurrentList.Text = _firstListName;
+            }
+            else if(_currentList == "SecondList")
+            {
+                cmbCurrentList.Text = _secondListName;
+            }
+            else if (_currentList == "ThirdList")
+            {
+                cmbCurrentList.Text = _thirdListName;
+            }
+
+            cmbCurrentList.Items.Add(_firstListName);
+            cmbCurrentList.Items.Add(_secondListName);
+            cmbCurrentList.Items.Add(_thirdListName);
         }
 
         public void LoadItemList(string currentList)
@@ -164,7 +185,8 @@ namespace WatchlistUI
 
         private void btnSettings_Click(object sender, EventArgs e)
         {
-
+            SettingsUI settingsUI = new SettingsUI(this, settings);
+            settingsUI.Show();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

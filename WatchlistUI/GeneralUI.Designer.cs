@@ -43,17 +43,18 @@ namespace WatchlistUI
             this.btnSortDate = new System.Windows.Forms.Button();
             this.btnFilter = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtTitleFilter = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtScoreFilter = new System.Windows.Forms.TextBox();
-            this.cmbScoreFilter = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cmbDateFilter = new System.Windows.Forms.ComboBox();
-            this.txtDateFilter1 = new System.Windows.Forms.TextBox();
-            this.txtDateFilter2 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.cmbCategoryFilter = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtDateFilter2 = new System.Windows.Forms.TextBox();
+            this.txtDateFilter1 = new System.Windows.Forms.TextBox();
+            this.cmbDateFilter = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmbScoreFilter = new System.Windows.Forms.ComboBox();
+            this.txtScoreFilter = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtTitleFilter = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmbCurrentList = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -85,9 +86,9 @@ namespace WatchlistUI
             // 
             // btnOnWatch
             // 
-            this.btnOnWatch.Location = new System.Drawing.Point(12, 12);
+            this.btnOnWatch.Location = new System.Drawing.Point(310, 12);
             this.btnOnWatch.Name = "btnOnWatch";
-            this.btnOnWatch.Size = new System.Drawing.Size(220, 52);
+            this.btnOnWatch.Size = new System.Drawing.Size(85, 52);
             this.btnOnWatch.TabIndex = 3;
             this.btnOnWatch.Text = "On Watch";
             this.btnOnWatch.UseVisualStyleBackColor = true;
@@ -95,9 +96,9 @@ namespace WatchlistUI
             // 
             // btnCompleted
             // 
-            this.btnCompleted.Location = new System.Drawing.Point(248, 12);
+            this.btnCompleted.Location = new System.Drawing.Point(401, 12);
             this.btnCompleted.Name = "btnCompleted";
-            this.btnCompleted.Size = new System.Drawing.Size(241, 52);
+            this.btnCompleted.Size = new System.Drawing.Size(88, 52);
             this.btnCompleted.TabIndex = 4;
             this.btnCompleted.Text = "Completed";
             this.btnCompleted.UseVisualStyleBackColor = true;
@@ -214,78 +215,13 @@ namespace WatchlistUI
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtering";
             // 
-            // label1
+            // cmbCategoryFilter
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 34);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(27, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Title";
-            // 
-            // txtTitleFilter
-            // 
-            this.txtTitleFilter.Location = new System.Drawing.Point(77, 31);
-            this.txtTitleFilter.Name = "txtTitleFilter";
-            this.txtTitleFilter.Size = new System.Drawing.Size(157, 20);
-            this.txtTitleFilter.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(17, 65);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Score";
-            // 
-            // txtScoreFilter
-            // 
-            this.txtScoreFilter.Location = new System.Drawing.Point(134, 57);
-            this.txtScoreFilter.Name = "txtScoreFilter";
-            this.txtScoreFilter.Size = new System.Drawing.Size(100, 20);
-            this.txtScoreFilter.TabIndex = 3;
-            // 
-            // cmbScoreFilter
-            // 
-            this.cmbScoreFilter.FormattingEnabled = true;
-            this.cmbScoreFilter.Location = new System.Drawing.Point(77, 57);
-            this.cmbScoreFilter.Name = "cmbScoreFilter";
-            this.cmbScoreFilter.Size = new System.Drawing.Size(41, 21);
-            this.cmbScoreFilter.TabIndex = 4;
-            this.cmbScoreFilter.Text = ">";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(17, 90);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(30, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Date";
-            // 
-            // cmbDateFilter
-            // 
-            this.cmbDateFilter.FormattingEnabled = true;
-            this.cmbDateFilter.Location = new System.Drawing.Point(77, 84);
-            this.cmbDateFilter.Name = "cmbDateFilter";
-            this.cmbDateFilter.Size = new System.Drawing.Size(41, 21);
-            this.cmbDateFilter.TabIndex = 6;
-            this.cmbDateFilter.Text = ">";
-            // 
-            // txtDateFilter1
-            // 
-            this.txtDateFilter1.Location = new System.Drawing.Point(134, 84);
-            this.txtDateFilter1.Name = "txtDateFilter1";
-            this.txtDateFilter1.Size = new System.Drawing.Size(100, 20);
-            this.txtDateFilter1.TabIndex = 7;
-            // 
-            // txtDateFilter2
-            // 
-            this.txtDateFilter2.Location = new System.Drawing.Point(240, 84);
-            this.txtDateFilter2.Name = "txtDateFilter2";
-            this.txtDateFilter2.Size = new System.Drawing.Size(100, 20);
-            this.txtDateFilter2.TabIndex = 8;
+            this.cmbCategoryFilter.FormattingEnabled = true;
+            this.cmbCategoryFilter.Location = new System.Drawing.Point(77, 116);
+            this.cmbCategoryFilter.Name = "cmbCategoryFilter";
+            this.cmbCategoryFilter.Size = new System.Drawing.Size(157, 21);
+            this.cmbCategoryFilter.TabIndex = 10;
             // 
             // label4
             // 
@@ -296,19 +232,95 @@ namespace WatchlistUI
             this.label4.TabIndex = 9;
             this.label4.Text = "Category";
             // 
-            // cmbCategoryFilter
+            // txtDateFilter2
             // 
-            this.cmbCategoryFilter.FormattingEnabled = true;
-            this.cmbCategoryFilter.Location = new System.Drawing.Point(77, 116);
-            this.cmbCategoryFilter.Name = "cmbCategoryFilter";
-            this.cmbCategoryFilter.Size = new System.Drawing.Size(157, 21);
-            this.cmbCategoryFilter.TabIndex = 10;
+            this.txtDateFilter2.Location = new System.Drawing.Point(240, 84);
+            this.txtDateFilter2.Name = "txtDateFilter2";
+            this.txtDateFilter2.Size = new System.Drawing.Size(100, 20);
+            this.txtDateFilter2.TabIndex = 8;
+            // 
+            // txtDateFilter1
+            // 
+            this.txtDateFilter1.Location = new System.Drawing.Point(134, 84);
+            this.txtDateFilter1.Name = "txtDateFilter1";
+            this.txtDateFilter1.Size = new System.Drawing.Size(100, 20);
+            this.txtDateFilter1.TabIndex = 7;
+            // 
+            // cmbDateFilter
+            // 
+            this.cmbDateFilter.FormattingEnabled = true;
+            this.cmbDateFilter.Location = new System.Drawing.Point(77, 84);
+            this.cmbDateFilter.Name = "cmbDateFilter";
+            this.cmbDateFilter.Size = new System.Drawing.Size(41, 21);
+            this.cmbDateFilter.TabIndex = 6;
+            this.cmbDateFilter.Text = ">";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(17, 90);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(30, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Date";
+            // 
+            // cmbScoreFilter
+            // 
+            this.cmbScoreFilter.FormattingEnabled = true;
+            this.cmbScoreFilter.Location = new System.Drawing.Point(77, 57);
+            this.cmbScoreFilter.Name = "cmbScoreFilter";
+            this.cmbScoreFilter.Size = new System.Drawing.Size(41, 21);
+            this.cmbScoreFilter.TabIndex = 4;
+            this.cmbScoreFilter.Text = ">";
+            // 
+            // txtScoreFilter
+            // 
+            this.txtScoreFilter.Location = new System.Drawing.Point(134, 57);
+            this.txtScoreFilter.Name = "txtScoreFilter";
+            this.txtScoreFilter.Size = new System.Drawing.Size(100, 20);
+            this.txtScoreFilter.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(17, 65);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Score";
+            // 
+            // txtTitleFilter
+            // 
+            this.txtTitleFilter.Location = new System.Drawing.Point(77, 31);
+            this.txtTitleFilter.Name = "txtTitleFilter";
+            this.txtTitleFilter.Size = new System.Drawing.Size(157, 20);
+            this.txtTitleFilter.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(17, 34);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(27, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Title";
+            // 
+            // cmbCurrentList
+            // 
+            this.cmbCurrentList.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.cmbCurrentList.FormattingEnabled = true;
+            this.cmbCurrentList.Location = new System.Drawing.Point(23, 19);
+            this.cmbCurrentList.Name = "cmbCurrentList";
+            this.cmbCurrentList.Size = new System.Drawing.Size(245, 33);
+            this.cmbCurrentList.TabIndex = 15;
             // 
             // GeneralUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.SlateGray;
             this.ClientSize = new System.Drawing.Size(672, 632);
+            this.Controls.Add(this.cmbCurrentList);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnSortDate);
             this.Controls.Add(this.btnSortScore);
@@ -358,5 +370,6 @@ namespace WatchlistUI
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtTitleFilter;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cmbCurrentList;
     }
 }

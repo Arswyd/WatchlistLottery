@@ -81,11 +81,45 @@ namespace WatchlistUI
         public void LoadItemList(string currentList)
         {
             items = SqliteDataAccess.LoadItems(currentList);
-            var temp = GetTempList(items);
-            WireUpList(temp);
+            var filteredList = GetFilteredList(items);
+            var sortedList = GetSortedList(filteredList);
+            WireUpList(sortedList);
         }
 
-        private List<ItemModel> GetTempList(List<ItemModel> items)
+        private List<ItemModel> GetFilteredList(List<ItemModel> items)
+        {
+
+            if (txtTitleFilter.Text != "")
+            {
+                //TODO - filtering is case sensitive
+                items = items.Where(x => x.Title.Contains(txtTitleFilter.Text)).ToList();
+            }
+            if (txtScoreFilterMin.Text != "")
+            {
+                items = items.Where(x => x.Score >= Convert.ToDouble(txtScoreFilterMin.Text)).ToList();
+            }
+            if (txtScoreFilterMax.Text != "")
+            {
+                items = items.Where(x => x.Score <= Convert.ToDouble(txtScoreFilterMax.Text)).ToList();
+            }
+            if (txtDateFilterMin.Text != "")
+            {
+                items = items.Where(x => x.Date >= Convert.ToInt32(txtDateFilterMin.Text)).ToList();
+            }
+            if (txtDateFilterMax.Text != "")
+            {
+                items = items.Where(x => x.Date <= Convert.ToInt32(txtDateFilterMax.Text)).ToList();
+            }
+            //TODO - combobox need wireup
+            if (cmbCategoryFilter.Text != "")
+            {
+                items = items.Where(x => x.Category == cmbCategoryFilter.Text).ToList();
+            }
+
+            return items;
+        }
+
+        private List<ItemModel> GetSortedList(List<ItemModel> items)
         {
             if(sortingType == "byTitle" && isSortingAscending)
             {
@@ -253,7 +287,7 @@ namespace WatchlistUI
 
         private void btnFilter_Click(object sender, EventArgs e)
         {
-
+            LoadItemList(_currentList);
         }
     }
 }

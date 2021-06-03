@@ -45,16 +45,15 @@ namespace WatchlistUI
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cmbCategoryFilter = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtDateFilter2 = new System.Windows.Forms.TextBox();
-            this.txtDateFilter1 = new System.Windows.Forms.TextBox();
-            this.cmbDateFilter = new System.Windows.Forms.ComboBox();
+            this.txtDateFilterMax = new System.Windows.Forms.TextBox();
+            this.txtDateFilterMin = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.cmbScoreFilter = new System.Windows.Forms.ComboBox();
-            this.txtScoreFilter = new System.Windows.Forms.TextBox();
+            this.txtScoreFilterMin = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtTitleFilter = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbCurrentList = new System.Windows.Forms.ComboBox();
+            this.txtScoreFilterMax = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -196,15 +195,14 @@ namespace WatchlistUI
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtScoreFilterMax);
             this.groupBox1.Controls.Add(this.cmbCategoryFilter);
             this.groupBox1.Controls.Add(this.btnFilter);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.txtDateFilter2);
-            this.groupBox1.Controls.Add(this.txtDateFilter1);
-            this.groupBox1.Controls.Add(this.cmbDateFilter);
+            this.groupBox1.Controls.Add(this.txtDateFilterMax);
+            this.groupBox1.Controls.Add(this.txtDateFilterMin);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.cmbScoreFilter);
-            this.groupBox1.Controls.Add(this.txtScoreFilter);
+            this.groupBox1.Controls.Add(this.txtScoreFilterMin);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txtTitleFilter);
             this.groupBox1.Controls.Add(this.label1);
@@ -232,28 +230,19 @@ namespace WatchlistUI
             this.label4.TabIndex = 9;
             this.label4.Text = "Category";
             // 
-            // txtDateFilter2
+            // txtDateFilterMax
             // 
-            this.txtDateFilter2.Location = new System.Drawing.Point(240, 84);
-            this.txtDateFilter2.Name = "txtDateFilter2";
-            this.txtDateFilter2.Size = new System.Drawing.Size(100, 20);
-            this.txtDateFilter2.TabIndex = 8;
+            this.txtDateFilterMax.Location = new System.Drawing.Point(183, 87);
+            this.txtDateFilterMax.Name = "txtDateFilterMax";
+            this.txtDateFilterMax.Size = new System.Drawing.Size(100, 20);
+            this.txtDateFilterMax.TabIndex = 8;
             // 
-            // txtDateFilter1
+            // txtDateFilterMin
             // 
-            this.txtDateFilter1.Location = new System.Drawing.Point(134, 84);
-            this.txtDateFilter1.Name = "txtDateFilter1";
-            this.txtDateFilter1.Size = new System.Drawing.Size(100, 20);
-            this.txtDateFilter1.TabIndex = 7;
-            // 
-            // cmbDateFilter
-            // 
-            this.cmbDateFilter.FormattingEnabled = true;
-            this.cmbDateFilter.Location = new System.Drawing.Point(77, 84);
-            this.cmbDateFilter.Name = "cmbDateFilter";
-            this.cmbDateFilter.Size = new System.Drawing.Size(41, 21);
-            this.cmbDateFilter.TabIndex = 6;
-            this.cmbDateFilter.Text = ">";
+            this.txtDateFilterMin.Location = new System.Drawing.Point(77, 87);
+            this.txtDateFilterMin.Name = "txtDateFilterMin";
+            this.txtDateFilterMin.Size = new System.Drawing.Size(100, 20);
+            this.txtDateFilterMin.TabIndex = 7;
             // 
             // label3
             // 
@@ -264,21 +253,12 @@ namespace WatchlistUI
             this.label3.TabIndex = 5;
             this.label3.Text = "Date";
             // 
-            // cmbScoreFilter
+            // txtScoreFilterMin
             // 
-            this.cmbScoreFilter.FormattingEnabled = true;
-            this.cmbScoreFilter.Location = new System.Drawing.Point(77, 57);
-            this.cmbScoreFilter.Name = "cmbScoreFilter";
-            this.cmbScoreFilter.Size = new System.Drawing.Size(41, 21);
-            this.cmbScoreFilter.TabIndex = 4;
-            this.cmbScoreFilter.Text = ">";
-            // 
-            // txtScoreFilter
-            // 
-            this.txtScoreFilter.Location = new System.Drawing.Point(134, 57);
-            this.txtScoreFilter.Name = "txtScoreFilter";
-            this.txtScoreFilter.Size = new System.Drawing.Size(100, 20);
-            this.txtScoreFilter.TabIndex = 3;
+            this.txtScoreFilterMin.Location = new System.Drawing.Point(77, 61);
+            this.txtScoreFilterMin.Name = "txtScoreFilterMin";
+            this.txtScoreFilterMin.Size = new System.Drawing.Size(100, 20);
+            this.txtScoreFilterMin.TabIndex = 3;
             // 
             // label2
             // 
@@ -313,6 +293,13 @@ namespace WatchlistUI
             this.cmbCurrentList.Name = "cmbCurrentList";
             this.cmbCurrentList.Size = new System.Drawing.Size(245, 33);
             this.cmbCurrentList.TabIndex = 15;
+            // 
+            // txtScoreFilterMax
+            // 
+            this.txtScoreFilterMax.Location = new System.Drawing.Point(183, 62);
+            this.txtScoreFilterMax.Name = "txtScoreFilterMax";
+            this.txtScoreFilterMax.Size = new System.Drawing.Size(100, 20);
+            this.txtScoreFilterMax.TabIndex = 14;
             // 
             // GeneralUI
             // 
@@ -361,15 +348,14 @@ namespace WatchlistUI
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox cmbCategoryFilter;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtDateFilter2;
-        private System.Windows.Forms.TextBox txtDateFilter1;
-        private System.Windows.Forms.ComboBox cmbDateFilter;
+        private System.Windows.Forms.TextBox txtDateFilterMax;
+        private System.Windows.Forms.TextBox txtDateFilterMin;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cmbScoreFilter;
-        private System.Windows.Forms.TextBox txtScoreFilter;
+        private System.Windows.Forms.TextBox txtScoreFilterMin;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtTitleFilter;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbCurrentList;
+        private System.Windows.Forms.TextBox txtScoreFilterMax;
     }
 }

@@ -42,9 +42,17 @@ namespace WatchlistUI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            //TODO - Add validation to form
+
             _item.Title = txtTitle.Text;
-            _item.Score = Convert.ToDouble(txtScore.Text);
-            _item.Date = Convert.ToInt32(txtDate.Text);
+            if (txtScore.Text != "")
+            {
+                _item.Score = int.Parse(txtScore.Text);
+            }
+            if (txtDate.Text != "")
+            {
+                _item.Date = int.Parse(txtDate.Text);
+            }
             _item.Category = cmbCategory.Text;
 
             if (_isExisting)

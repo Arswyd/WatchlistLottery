@@ -21,6 +21,8 @@ namespace WatchlistLibrary
             }
         }
 
+        // General methods
+
         public static void AddItemToList(ItemModel item, string currentList)
         {
             item.ID = SetItemID(currentList);
@@ -56,17 +58,50 @@ namespace WatchlistLibrary
             }
         }
 
+        public static void DeleteAllFromList(string currentList)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Execute("delete from " + currentList);
+            }
+        }
+
+        // Load and Save Settings
+
+        public static List<SettingsModel> LoadSettings()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<SettingsModel>("select * from Settings", new DynamicParameters());
+                return output.ToList();
+            }
+        }
+
+        public static void SaveSettings(List<SettingsModel> settings)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                foreach (var setting in settings)
+                {
+                    cnn.Execute("update Settings Set SettingData=@SettingData where SettingName = @SettingName", setting);
+                }
+            }
+        }
+
+
+        // Misc
+
         private static int SetItemID(string currentList)
         {
             List<ItemModel> _items = LoadItems(currentList);
 
             int id;
 
-            if(_items.Count() == 0)
+            if (_items.Count() == 0)
             {
                 return 1;
             }
-            else if (_items[_items.Count()-1].ID == _items.Count())
+            else if (_items[_items.Count() - 1].ID == _items.Count())
             {
                 id = _items.Count() + 1;
                 return id;
@@ -82,15 +117,6 @@ namespace WatchlistLibrary
                     i++;
                 }
                 return id;
-            }
-        }
-
-        public static List<SettingsModel> LoadSettings()
-        {
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
-            {
-                var output = cnn.Query<SettingsModel>("select * from Settings", new DynamicParameters());
-                return output.ToList();
             }
         }
 

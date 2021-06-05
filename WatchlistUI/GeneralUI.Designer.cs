@@ -32,7 +32,6 @@ namespace WatchlistUI
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnRoll = new System.Windows.Forms.Button();
             this.btnOnWatch = new System.Windows.Forms.Button();
-            this.btnCompleted = new System.Windows.Forms.Button();
             this.btnTransfer = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -43,6 +42,8 @@ namespace WatchlistUI
             this.btnSortDate = new System.Windows.Forms.Button();
             this.btnFilter = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnClearFilter = new System.Windows.Forms.Button();
+            this.txtScoreFilterMax = new System.Windows.Forms.TextBox();
             this.cmbCategoryFilter = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtDateFilterMax = new System.Windows.Forms.TextBox();
@@ -53,7 +54,6 @@ namespace WatchlistUI
             this.txtTitleFilter = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbCurrentList = new System.Windows.Forms.ComboBox();
-            this.txtScoreFilterMax = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -87,21 +87,11 @@ namespace WatchlistUI
             // 
             this.btnOnWatch.Location = new System.Drawing.Point(310, 12);
             this.btnOnWatch.Name = "btnOnWatch";
-            this.btnOnWatch.Size = new System.Drawing.Size(85, 52);
+            this.btnOnWatch.Size = new System.Drawing.Size(149, 52);
             this.btnOnWatch.TabIndex = 3;
-            this.btnOnWatch.Text = "On Watch";
+            this.btnOnWatch.Text = "Switch to On Watch";
             this.btnOnWatch.UseVisualStyleBackColor = true;
             this.btnOnWatch.Click += new System.EventHandler(this.btnOnWatch_Click);
-            // 
-            // btnCompleted
-            // 
-            this.btnCompleted.Location = new System.Drawing.Point(401, 12);
-            this.btnCompleted.Name = "btnCompleted";
-            this.btnCompleted.Size = new System.Drawing.Size(88, 52);
-            this.btnCompleted.TabIndex = 4;
-            this.btnCompleted.Text = "Completed";
-            this.btnCompleted.UseVisualStyleBackColor = true;
-            this.btnCompleted.Click += new System.EventHandler(this.btnCompleted_Click);
             // 
             // btnTransfer
             // 
@@ -185,7 +175,7 @@ namespace WatchlistUI
             // 
             // btnFilter
             // 
-            this.btnFilter.Location = new System.Drawing.Point(557, 84);
+            this.btnFilter.Location = new System.Drawing.Point(557, 19);
             this.btnFilter.Name = "btnFilter";
             this.btnFilter.Size = new System.Drawing.Size(74, 46);
             this.btnFilter.TabIndex = 13;
@@ -195,6 +185,7 @@ namespace WatchlistUI
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnClearFilter);
             this.groupBox1.Controls.Add(this.txtScoreFilterMax);
             this.groupBox1.Controls.Add(this.cmbCategoryFilter);
             this.groupBox1.Controls.Add(this.btnFilter);
@@ -213,8 +204,26 @@ namespace WatchlistUI
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtering";
             // 
+            // btnClearFilter
+            // 
+            this.btnClearFilter.Location = new System.Drawing.Point(557, 71);
+            this.btnClearFilter.Name = "btnClearFilter";
+            this.btnClearFilter.Size = new System.Drawing.Size(74, 46);
+            this.btnClearFilter.TabIndex = 15;
+            this.btnClearFilter.Text = "Clear Filter";
+            this.btnClearFilter.UseVisualStyleBackColor = true;
+            this.btnClearFilter.Click += new System.EventHandler(this.btnClearFilter_Click);
+            // 
+            // txtScoreFilterMax
+            // 
+            this.txtScoreFilterMax.Location = new System.Drawing.Point(183, 62);
+            this.txtScoreFilterMax.Name = "txtScoreFilterMax";
+            this.txtScoreFilterMax.Size = new System.Drawing.Size(100, 20);
+            this.txtScoreFilterMax.TabIndex = 14;
+            // 
             // cmbCategoryFilter
             // 
+            this.cmbCategoryFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCategoryFilter.FormattingEnabled = true;
             this.cmbCategoryFilter.Location = new System.Drawing.Point(77, 116);
             this.cmbCategoryFilter.Name = "cmbCategoryFilter";
@@ -287,19 +296,14 @@ namespace WatchlistUI
             // 
             // cmbCurrentList
             // 
+            this.cmbCurrentList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCurrentList.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cmbCurrentList.FormattingEnabled = true;
             this.cmbCurrentList.Location = new System.Drawing.Point(23, 19);
             this.cmbCurrentList.Name = "cmbCurrentList";
             this.cmbCurrentList.Size = new System.Drawing.Size(245, 33);
             this.cmbCurrentList.TabIndex = 15;
-            // 
-            // txtScoreFilterMax
-            // 
-            this.txtScoreFilterMax.Location = new System.Drawing.Point(183, 62);
-            this.txtScoreFilterMax.Name = "txtScoreFilterMax";
-            this.txtScoreFilterMax.Size = new System.Drawing.Size(100, 20);
-            this.txtScoreFilterMax.TabIndex = 14;
+            this.cmbCurrentList.SelectionChangeCommitted += new System.EventHandler(this.cmbCurrentList_SelectionChangeCommitted);
             // 
             // GeneralUI
             // 
@@ -317,7 +321,6 @@ namespace WatchlistUI
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnSettings);
             this.Controls.Add(this.btnTransfer);
-            this.Controls.Add(this.btnCompleted);
             this.Controls.Add(this.btnOnWatch);
             this.Controls.Add(this.btnRoll);
             this.Controls.Add(this.dataGridView1);
@@ -335,7 +338,6 @@ namespace WatchlistUI
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnRoll;
         private System.Windows.Forms.Button btnOnWatch;
-        private System.Windows.Forms.Button btnCompleted;
         private System.Windows.Forms.Button btnTransfer;
         private System.Windows.Forms.Button btnSettings;
         private System.Windows.Forms.Button btnAdd;
@@ -357,5 +359,6 @@ namespace WatchlistUI
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbCurrentList;
         private System.Windows.Forms.TextBox txtScoreFilterMax;
+        private System.Windows.Forms.Button btnClearFilter;
     }
 }

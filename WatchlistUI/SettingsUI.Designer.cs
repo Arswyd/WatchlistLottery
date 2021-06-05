@@ -30,17 +30,17 @@ namespace WatchlistUI
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtCategory1 = new System.Windows.Forms.TextBox();
+            this.btnDelete1 = new System.Windows.Forms.Button();
+            this.btnExport1 = new System.Windows.Forms.Button();
+            this.btnImport1 = new System.Windows.Forms.Button();
             this.txtName1 = new System.Windows.Forms.TextBox();
+            this.txtCategory1 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.cmbDefault = new System.Windows.Forms.ComboBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.btnImport1 = new System.Windows.Forms.Button();
-            this.btnExport1 = new System.Windows.Forms.Button();
-            this.btnDelete1 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnDelete2 = new System.Windows.Forms.Button();
             this.btnExport2 = new System.Windows.Forms.Button();
@@ -79,14 +79,49 @@ namespace WatchlistUI
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "List #1";
             // 
-            // label1
+            // btnDelete1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 31);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Name";
+            this.btnDelete1.Location = new System.Drawing.Point(278, 80);
+            this.btnDelete1.Name = "btnDelete1";
+            this.btnDelete1.Size = new System.Drawing.Size(100, 40);
+            this.btnDelete1.TabIndex = 11;
+            this.btnDelete1.Text = "Delete All";
+            this.btnDelete1.UseVisualStyleBackColor = true;
+            this.btnDelete1.Click += new System.EventHandler(this.btnDelete1_Click);
+            // 
+            // btnExport1
+            // 
+            this.btnExport1.Location = new System.Drawing.Point(172, 80);
+            this.btnExport1.Name = "btnExport1";
+            this.btnExport1.Size = new System.Drawing.Size(100, 40);
+            this.btnExport1.TabIndex = 10;
+            this.btnExport1.Text = "Export";
+            this.btnExport1.UseVisualStyleBackColor = true;
+            this.btnExport1.Click += new System.EventHandler(this.btnExport1_Click);
+            // 
+            // btnImport1
+            // 
+            this.btnImport1.Location = new System.Drawing.Point(66, 80);
+            this.btnImport1.Name = "btnImport1";
+            this.btnImport1.Size = new System.Drawing.Size(100, 40);
+            this.btnImport1.TabIndex = 9;
+            this.btnImport1.Text = "Import";
+            this.btnImport1.UseVisualStyleBackColor = true;
+            this.btnImport1.Click += new System.EventHandler(this.btnImport1_Click);
+            // 
+            // txtName1
+            // 
+            this.txtName1.Location = new System.Drawing.Point(66, 28);
+            this.txtName1.Name = "txtName1";
+            this.txtName1.Size = new System.Drawing.Size(312, 20);
+            this.txtName1.TabIndex = 3;
+            // 
+            // txtCategory1
+            // 
+            this.txtCategory1.Location = new System.Drawing.Point(66, 54);
+            this.txtCategory1.Name = "txtCategory1";
+            this.txtCategory1.Size = new System.Drawing.Size(312, 20);
+            this.txtCategory1.TabIndex = 2;
             // 
             // label2
             // 
@@ -97,19 +132,14 @@ namespace WatchlistUI
             this.label2.TabIndex = 1;
             this.label2.Text = "Categories";
             // 
-            // txtCategory1
+            // label1
             // 
-            this.txtCategory1.Location = new System.Drawing.Point(66, 54);
-            this.txtCategory1.Name = "txtCategory1";
-            this.txtCategory1.Size = new System.Drawing.Size(312, 20);
-            this.txtCategory1.TabIndex = 2;
-            // 
-            // txtName1
-            // 
-            this.txtName1.Location = new System.Drawing.Point(66, 28);
-            this.txtName1.Name = "txtName1";
-            this.txtName1.Size = new System.Drawing.Size(312, 20);
-            this.txtName1.TabIndex = 3;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 31);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Name";
             // 
             // label4
             // 
@@ -122,6 +152,7 @@ namespace WatchlistUI
             // 
             // cmbDefault
             // 
+            this.cmbDefault.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDefault.FormattingEnabled = true;
             this.cmbDefault.Location = new System.Drawing.Point(78, 443);
             this.cmbDefault.Name = "cmbDefault";
@@ -136,6 +167,7 @@ namespace WatchlistUI
             this.btnSave.TabIndex = 7;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnCancel
             // 
@@ -145,33 +177,7 @@ namespace WatchlistUI
             this.btnCancel.TabIndex = 8;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
-            // 
-            // btnImport1
-            // 
-            this.btnImport1.Location = new System.Drawing.Point(66, 80);
-            this.btnImport1.Name = "btnImport1";
-            this.btnImport1.Size = new System.Drawing.Size(100, 40);
-            this.btnImport1.TabIndex = 9;
-            this.btnImport1.Text = "Import";
-            this.btnImport1.UseVisualStyleBackColor = true;
-            // 
-            // btnExport1
-            // 
-            this.btnExport1.Location = new System.Drawing.Point(172, 80);
-            this.btnExport1.Name = "btnExport1";
-            this.btnExport1.Size = new System.Drawing.Size(100, 40);
-            this.btnExport1.TabIndex = 10;
-            this.btnExport1.Text = "Export";
-            this.btnExport1.UseVisualStyleBackColor = true;
-            // 
-            // btnDelete1
-            // 
-            this.btnDelete1.Location = new System.Drawing.Point(278, 80);
-            this.btnDelete1.Name = "btnDelete1";
-            this.btnDelete1.Size = new System.Drawing.Size(100, 40);
-            this.btnDelete1.TabIndex = 11;
-            this.btnDelete1.Text = "Delete All";
-            this.btnDelete1.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // groupBox2
             // 
@@ -198,6 +204,7 @@ namespace WatchlistUI
             this.btnDelete2.TabIndex = 11;
             this.btnDelete2.Text = "Delete All";
             this.btnDelete2.UseVisualStyleBackColor = true;
+            this.btnDelete2.Click += new System.EventHandler(this.btnDelete2_Click);
             // 
             // btnExport2
             // 
@@ -207,6 +214,7 @@ namespace WatchlistUI
             this.btnExport2.TabIndex = 10;
             this.btnExport2.Text = "Export";
             this.btnExport2.UseVisualStyleBackColor = true;
+            this.btnExport2.Click += new System.EventHandler(this.btnExport2_Click);
             // 
             // btnImport2
             // 
@@ -216,6 +224,7 @@ namespace WatchlistUI
             this.btnImport2.TabIndex = 9;
             this.btnImport2.Text = "Import";
             this.btnImport2.UseVisualStyleBackColor = true;
+            this.btnImport2.Click += new System.EventHandler(this.btnImport2_Click);
             // 
             // txtName2
             // 
@@ -273,6 +282,7 @@ namespace WatchlistUI
             this.btnDelete3.TabIndex = 11;
             this.btnDelete3.Text = "Delete All";
             this.btnDelete3.UseVisualStyleBackColor = true;
+            this.btnDelete3.Click += new System.EventHandler(this.btnDelete3_Click);
             // 
             // btnExport3
             // 
@@ -282,6 +292,7 @@ namespace WatchlistUI
             this.btnExport3.TabIndex = 10;
             this.btnExport3.Text = "Export";
             this.btnExport3.UseVisualStyleBackColor = true;
+            this.btnExport3.Click += new System.EventHandler(this.btnExport3_Click);
             // 
             // btnImport3
             // 
@@ -291,6 +302,7 @@ namespace WatchlistUI
             this.btnImport3.TabIndex = 9;
             this.btnImport3.Text = "Import";
             this.btnImport3.UseVisualStyleBackColor = true;
+            this.btnImport3.Click += new System.EventHandler(this.btnImport3_Click);
             // 
             // txtName3
             // 

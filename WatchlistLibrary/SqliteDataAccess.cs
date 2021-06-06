@@ -21,6 +21,15 @@ namespace WatchlistLibrary
             }
         }
 
+        public static List<string> LoadItemNameList(string currentList)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<string>("select Title from " + currentList, new DynamicParameters());
+                return output.ToList();
+            }
+        }
+
         // General methods
 
         public static void AddItemToList(ItemModel item, string currentList)

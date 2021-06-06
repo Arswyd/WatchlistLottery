@@ -15,7 +15,7 @@ namespace WatchlistUI
     {
         List<SettingsModel> settings = new List<SettingsModel>();
         List<ItemModel> items = new List<ItemModel>();
-        List<ItemModel> filteredItems = new List<ItemModel>();
+        List<ItemModel> sortedList = new List<ItemModel>();
         private string sortingType;
         private bool isSortingAscending;
         private bool isCompleted;
@@ -106,7 +106,7 @@ namespace WatchlistUI
         {
             items = SqliteDataAccess.LoadItems(currentList);
             var filteredList = GetFilteredList(items);
-            var sortedList = GetSortedList(filteredList);
+            sortedList = GetSortedList(filteredList);
             WireUpList(sortedList);
         }
 
@@ -212,7 +212,7 @@ namespace WatchlistUI
 
         private void btnRoll_Click(object sender, EventArgs e)
         {
-            LotteryUI lotteryUI = new LotteryUI(filteredItems, _currentList, this);
+            LotteryUI lotteryUI = new LotteryUI(sortedList, _currentList, this);
             lotteryUI.ShowDialog();
         }
 
@@ -336,8 +336,6 @@ namespace WatchlistUI
             }
 
             WireUpForm();
-
-            //cmbCurrentList.;
         }
 
         private void btnClearFilter_Click(object sender, EventArgs e)

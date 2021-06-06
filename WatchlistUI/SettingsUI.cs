@@ -87,22 +87,36 @@ namespace WatchlistUI
 
         private void btnImport1_Click(object sender, EventArgs e)
         {
-            Import();
+            Import("FirstList", "FirstListCompleted");
         }
 
         private void btnImport2_Click(object sender, EventArgs e)
         {
-
+            Import("SecondList", "SecondListCompleted");
         }
 
         private void btnImport3_Click(object sender, EventArgs e)
         {
-
+            Import("ThirdList", "ThirdListCompleted");
         }
 
-        void Import()
+        private void Import(string listName, string completedListName)
         {
-            var filePath = string.Empty;
+            string filePath = GetFilepath();
+            if (!String.IsNullOrEmpty(filePath))
+            {
+                List<string> lines = LoadFile(filePath);
+                int importedOnwatch = ImportListToDatabase(listName, lines, "Onwatch");
+                int importedCompleted = ImportListToDatabase(completedListName, lines, "Completed");
+                int duplicationNum = (lines.Count - importedOnwatch - importedCompleted);
+                MessageBox.Show($"From {lines.Count} items: \n {importedOnwatch} imported to On Watch \n {importedCompleted} imported to Completed \n {duplicationNum} duplicated items were found");
+                _generalUI.WireUpForm();
+            }
+        }
+
+        string GetFilepath()
+        {
+            string filePath = string.Empty;
 
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
@@ -114,32 +128,55 @@ namespace WatchlistUI
                 {
                     filePath = openFileDialog.FileName;
                 }
-            }
 
-            if (!String.IsNullOrEmpty(filePath))
-            {
-                LoadFile(filePath);
+                return filePath;
             }
         }
 
-        void LoadFile(string filePath)
+        List<string> LoadFile(string filePath)
         {
-            File.ReadAllLines(filePath).ToList();
+            return File.ReadAllLines(filePath).ToList();
         }
 
-        List<ItemModel> ConvertToItemModel(List<string> lines)
+        int ImportListToDatabase(string listName, List<string> lines, string ListType)
+        {
+            List<ItemModel> itemList = ConvertToItemModel(listName, lines, ListType);
+
+            if (itemList.Count > 0)
+            {
+                foreach (var i in itemList)
+                {
+                    SqliteDataAccess.AddItemToList(i, listName);
+                }
+            }
+
+            return itemList.Count;
+        }
+
+        List<ItemModel> ConvertToItemModel(string listName, List<string> lines, string listType)
         {
             List<ItemModel> output = new List<ItemModel>();
+
+            List<string> existingItemList = SqliteDataAccess.LoadItemNameList(listName);
+
 
             foreach (string line in lines)
             {
                 string[] cols = line.Split(';');
 
-                ItemModel item = new ItemModel();
+                if (cols[4] == listType && !existingItemList.Contains(cols[0]))
+                {
 
-                item.Title = cols[0];
+                    ItemModel item = new ItemModel();
 
-                output.Add(item);
+                    item.Title = cols[0];
+                    item.Date = int.Parse(cols[1]);
+                    item.Category = cols[2];
+                    item.Score = double.Parse(cols[3]);
+
+                    existingItemList.Add(cols[0]);
+                    output.Add(item);
+                }
             }
 
             return output;
@@ -159,7 +196,7 @@ namespace WatchlistUI
         {
             List<ItemModel> items = SqliteDataAccess.LoadItems("SecondList");
             List<ItemModel> completedItems = SqliteDataAccess.LoadItems("SecondListCompleted");
-            string BackupPath = "../../../WatchlistLibrary/ListBackup/FirstListBackup_" + DateTime.Now.ToString("yyyyMMdd") + ".csv";
+            string BackupPath = "../../../WatchlistLibrary/ListBackup/SecondListBackup_" + DateTime.Now.ToString("yyyyMMdd") + ".csv";
             SaveToFile(items, completedItems, BackupPath);
         }
 
@@ -167,7 +204,7 @@ namespace WatchlistUI
         {
             List<ItemModel> items = SqliteDataAccess.LoadItems("ThirdList");
             List<ItemModel> completedItems = SqliteDataAccess.LoadItems("ThirdListCompleted");
-            string BackupPath = "../../../WatchlistLibrary/ListBackup/FirstListBackup_" + DateTime.Now.ToString("yyyyMMdd") + ".csv";
+            string BackupPath = "../../../WatchlistLibrary/ListBackup/ThirdListBackup_" + DateTime.Now.ToString("yyyyMMdd") + ".csv";
             SaveToFile(items, completedItems, BackupPath);
         }
 
@@ -177,11 +214,11 @@ namespace WatchlistUI
 
             foreach (ItemModel i in items)
             {
-                lines.Add($"{i.Title}; {i.Date}; {i.Category}; {i.Score}; Onwatch");
+                lines.Add($"{i.Title};{i.Date};{i.Category};{i.Score};Onwatch");
             }
             foreach (ItemModel c in completedItems)
             {
-                lines.Add($"{c.Title}; {c.Date}; {c.Category}; {c.Score}; Completed");
+                lines.Add($"{c.Title};{c.Date};{c.Category};{c.Score};Completed");
             }
 
             File.WriteAllLines(BackupPath, lines);
@@ -192,17 +229,26 @@ namespace WatchlistUI
 
         private void btnDelete1_Click(object sender, EventArgs e)
         {
-            DeleteAll("FirstList", "FirstListCompleted");
+            if (MessageBox.Show("Do you want to delete all?", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                DeleteAll("FirstList", "FirstListCompleted");
+            }
         }
 
         private void btnDelete2_Click(object sender, EventArgs e)
         {
-            DeleteAll("SecondList", "SecondListCompleted");
+            if (MessageBox.Show("Do you want to delete all?", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                DeleteAll("SecondList", "SecondListCompleted");
+            }
         }
 
         private void btnDelete3_Click(object sender, EventArgs e)
         {
-            DeleteAll("ThirdList", "ThirdListCompleted");
+            if (MessageBox.Show("Do you want to delete all?", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                DeleteAll("ThirdList", "ThirdListCompleted");
+            }
         }
 
         private void DeleteAll(string listname, string completedlistname)
@@ -210,7 +256,6 @@ namespace WatchlistUI
             SqliteDataAccess.DeleteAllFromList(listname);
             SqliteDataAccess.DeleteAllFromList(completedlistname);
             _generalUI.WireUpForm();
-            this.Close();
         }
     }
 }

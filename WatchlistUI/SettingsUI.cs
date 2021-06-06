@@ -53,6 +53,8 @@ namespace WatchlistUI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            // TODO - Add validation to form
+
             _settings[0].SettingData = txtName1.Text;
             _settings[1].SettingData = txtCategory1.Text;
             _settings[2].SettingData = txtName2.Text;

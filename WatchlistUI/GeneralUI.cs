@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -95,7 +96,7 @@ namespace WatchlistUI
                 categories = new string[] { };
             }
 
-
+            cmbCategoryFilter.Items.Add("");
             foreach (var category in categories)
             {
                 cmbCategoryFilter.Items.Add(category);
@@ -112,33 +113,32 @@ namespace WatchlistUI
 
         private List<ItemModel> GetFilteredList(List<ItemModel> items)
         {
+                if (txtTitleFilter.Text != "")
+                {
+                    items = items.Where(x => x.Title.ToLower().Contains(txtTitleFilter.Text)).ToList();
+                }
+                if (txtScoreFilterMin.Text != "")
+                {
+                    items = items.Where(x => x.Score >= Convert.ToDouble(txtScoreFilterMin.Text)).ToList();
+                }
+                if (txtScoreFilterMax.Text != "")
+                {
+                    items = items.Where(x => x.Score <= Convert.ToDouble(txtScoreFilterMax.Text)).ToList();
+                }
+                if (txtDateFilterMin.Text != "")
+                {
+                    items = items.Where(x => x.Date >= Convert.ToInt32(txtDateFilterMin.Text)).ToList();
+                }
+                if (txtDateFilterMax.Text != "")
+                {
+                    items = items.Where(x => x.Date <= Convert.ToInt32(txtDateFilterMax.Text)).ToList();
+                }
+                if (cmbCategoryFilter.Text != "")
+                {
+                    items = items.Where(x => x.Category == cmbCategoryFilter.Text).ToList();
+                }
 
-            if (txtTitleFilter.Text != "")
-            {
-                items = items.Where(x => x.Title.ToLower().Contains(txtTitleFilter.Text)).ToList();
-            }
-            if (txtScoreFilterMin.Text != "")
-            {
-                items = items.Where(x => x.Score >= Convert.ToDouble(txtScoreFilterMin.Text)).ToList();
-            }
-            if (txtScoreFilterMax.Text != "")
-            {
-                items = items.Where(x => x.Score <= Convert.ToDouble(txtScoreFilterMax.Text)).ToList();
-            }
-            if (txtDateFilterMin.Text != "")
-            {
-                items = items.Where(x => x.Date >= Convert.ToInt32(txtDateFilterMin.Text)).ToList();
-            }
-            if (txtDateFilterMax.Text != "")
-            {
-                items = items.Where(x => x.Date <= Convert.ToInt32(txtDateFilterMax.Text)).ToList();
-            }
-            if (cmbCategoryFilter.Text != "")
-            {
-                items = items.Where(x => x.Category == cmbCategoryFilter.Text).ToList();
-            }
-
-            return items;
+                return items;
         }
 
         private List<ItemModel> GetSortedList(List<ItemModel> items)
@@ -316,7 +316,68 @@ namespace WatchlistUI
 
         private void btnFilter_Click(object sender, EventArgs e)
         {
-            LoadItemList(_currentList);
+            if (ValidateFiltering())
+            {
+                LoadItemList(_currentList);
+            }
+            else
+            {
+                MessageBox.Show("Imput not valid!");
+            }
+        }
+
+        private bool ValidateFiltering()
+        {
+            double minScore;
+            double maxScore;
+            int minDate = 0;
+            int maxDate = 0;
+
+            bool isDoubleMinScore = double.TryParse(txtScoreFilterMin.Text, out minScore);
+            bool isDoubleMaxScore = double.TryParse(txtScoreFilterMax.Text, out maxScore);
+            bool isIntMinDate = int.TryParse(txtDateFilterMin.Text, out minDate);
+            bool isIntMaxDate = int.TryParse(txtDateFilterMax.Text, out maxDate);
+
+            if (!String.IsNullOrWhiteSpace(txtTitleFilter.Text) && (txtTitleFilter.Text.Contains("\"") || txtTitleFilter.Text.Contains(";")))
+            {
+                return false;
+            }
+            else if (!String.IsNullOrWhiteSpace(txtScoreFilterMin.Text) && (txtScoreFilterMin.Text.Contains('.') || !isDoubleMinScore))
+            {
+                return false;
+            }
+            else if (!String.IsNullOrWhiteSpace(txtScoreFilterMin.Text) && minScore <= 0)
+            {
+                return false;
+            }
+            else if (!String.IsNullOrWhiteSpace(txtScoreFilterMax.Text) && (txtScoreFilterMax.Text.Contains('.') || !isDoubleMaxScore))
+            {
+                return false;
+            }
+            else if (!String.IsNullOrWhiteSpace(txtScoreFilterMax.Text) && (maxScore > 10.0 || maxScore < 0))
+            {
+                return false;
+            }
+            else if (!String.IsNullOrWhiteSpace(txtDateFilterMin.Text) && !isIntMinDate)
+            {
+                return false;
+            }
+            else if (!String.IsNullOrWhiteSpace(txtDateFilterMin.Text) && minDate <= 0)
+            {
+                return false;
+            }
+            else if (!String.IsNullOrWhiteSpace(txtDateFilterMax.Text) && !isIntMaxDate)
+            {
+                return false;
+            }
+            else if (!String.IsNullOrWhiteSpace(txtDateFilterMax.Text) && (maxDate > DateTime.Now.Year || maxDate < 0))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         private void cmbCurrentList_SelectionChangeCommitted(object sender, EventArgs e)

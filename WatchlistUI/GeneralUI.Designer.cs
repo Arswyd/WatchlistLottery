@@ -54,8 +54,12 @@ namespace WatchlistUI
             this.txtTitleFilter = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbCurrentList = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -70,14 +74,14 @@ namespace WatchlistUI
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(487, 322);
+            this.dataGridView1.Size = new System.Drawing.Size(500, 300);
             this.dataGridView1.TabIndex = 0;
             // 
             // btnRoll
             // 
-            this.btnRoll.Location = new System.Drawing.Point(505, 564);
+            this.btnRoll.Location = new System.Drawing.Point(520, 542);
             this.btnRoll.Name = "btnRoll";
-            this.btnRoll.Size = new System.Drawing.Size(160, 56);
+            this.btnRoll.Size = new System.Drawing.Size(140, 56);
             this.btnRoll.TabIndex = 1;
             this.btnRoll.Text = "Roll";
             this.btnRoll.UseVisualStyleBackColor = true;
@@ -85,9 +89,9 @@ namespace WatchlistUI
             // 
             // btnOnWatch
             // 
-            this.btnOnWatch.Location = new System.Drawing.Point(310, 12);
+            this.btnOnWatch.Location = new System.Drawing.Point(263, 11);
             this.btnOnWatch.Name = "btnOnWatch";
-            this.btnOnWatch.Size = new System.Drawing.Size(149, 52);
+            this.btnOnWatch.Size = new System.Drawing.Size(128, 38);
             this.btnOnWatch.TabIndex = 3;
             this.btnOnWatch.Text = "Switch to On Watch";
             this.btnOnWatch.UseVisualStyleBackColor = true;
@@ -95,9 +99,9 @@ namespace WatchlistUI
             // 
             // btnTransfer
             // 
-            this.btnTransfer.Location = new System.Drawing.Point(505, 402);
+            this.btnTransfer.Location = new System.Drawing.Point(520, 402);
             this.btnTransfer.Name = "btnTransfer";
-            this.btnTransfer.Size = new System.Drawing.Size(160, 56);
+            this.btnTransfer.Size = new System.Drawing.Size(140, 56);
             this.btnTransfer.TabIndex = 5;
             this.btnTransfer.Text = "Transfer to Completed";
             this.btnTransfer.UseVisualStyleBackColor = true;
@@ -105,7 +109,7 @@ namespace WatchlistUI
             // 
             // btnSettings
             // 
-            this.btnSettings.Location = new System.Drawing.Point(495, 12);
+            this.btnSettings.Location = new System.Drawing.Point(488, 12);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(170, 51);
             this.btnSettings.TabIndex = 6;
@@ -115,9 +119,9 @@ namespace WatchlistUI
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(505, 298);
+            this.btnAdd.Location = new System.Drawing.Point(520, 298);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(160, 46);
+            this.btnAdd.Size = new System.Drawing.Size(140, 46);
             this.btnAdd.TabIndex = 7;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -125,9 +129,9 @@ namespace WatchlistUI
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(505, 350);
+            this.btnEdit.Location = new System.Drawing.Point(520, 350);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(160, 46);
+            this.btnEdit.Size = new System.Drawing.Size(140, 46);
             this.btnEdit.TabIndex = 8;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
@@ -135,9 +139,9 @@ namespace WatchlistUI
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(505, 464);
+            this.btnDelete.Location = new System.Drawing.Point(520, 464);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(160, 46);
+            this.btnDelete.Size = new System.Drawing.Size(140, 46);
             this.btnDelete.TabIndex = 9;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -145,19 +149,20 @@ namespace WatchlistUI
             // 
             // btnSortTitle
             // 
-            this.btnSortTitle.Location = new System.Drawing.Point(12, 246);
+            this.btnSortTitle.BackColor = System.Drawing.SystemColors.Control;
+            this.btnSortTitle.Location = new System.Drawing.Point(10, 20);
             this.btnSortTitle.Name = "btnSortTitle";
             this.btnSortTitle.Size = new System.Drawing.Size(82, 46);
             this.btnSortTitle.TabIndex = 10;
             this.btnSortTitle.Text = "Title";
-            this.btnSortTitle.UseVisualStyleBackColor = true;
+            this.btnSortTitle.UseVisualStyleBackColor = false;
             this.btnSortTitle.Click += new System.EventHandler(this.btnSortTitle_Click);
             // 
             // btnSortScore
             // 
-            this.btnSortScore.Location = new System.Drawing.Point(100, 246);
+            this.btnSortScore.Location = new System.Drawing.Point(10, 70);
             this.btnSortScore.Name = "btnSortScore";
-            this.btnSortScore.Size = new System.Drawing.Size(77, 46);
+            this.btnSortScore.Size = new System.Drawing.Size(82, 46);
             this.btnSortScore.TabIndex = 11;
             this.btnSortScore.Text = "Score";
             this.btnSortScore.UseVisualStyleBackColor = true;
@@ -165,9 +170,9 @@ namespace WatchlistUI
             // 
             // btnSortDate
             // 
-            this.btnSortDate.Location = new System.Drawing.Point(183, 246);
+            this.btnSortDate.Location = new System.Drawing.Point(10, 120);
             this.btnSortDate.Name = "btnSortDate";
-            this.btnSortDate.Size = new System.Drawing.Size(74, 46);
+            this.btnSortDate.Size = new System.Drawing.Size(82, 46);
             this.btnSortDate.TabIndex = 12;
             this.btnSortDate.Text = "Date";
             this.btnSortDate.UseVisualStyleBackColor = true;
@@ -175,7 +180,7 @@ namespace WatchlistUI
             // 
             // btnFilter
             // 
-            this.btnFilter.Location = new System.Drawing.Point(557, 19);
+            this.btnFilter.Location = new System.Drawing.Point(450, 17);
             this.btnFilter.Name = "btnFilter";
             this.btnFilter.Size = new System.Drawing.Size(74, 46);
             this.btnFilter.TabIndex = 13;
@@ -185,6 +190,8 @@ namespace WatchlistUI
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.btnClearFilter);
             this.groupBox1.Controls.Add(this.txtScoreFilterMax);
             this.groupBox1.Controls.Add(this.cmbCategoryFilter);
@@ -197,16 +204,16 @@ namespace WatchlistUI
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txtTitleFilter);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(23, 87);
+            this.groupBox1.Location = new System.Drawing.Point(128, 79);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(637, 142);
+            this.groupBox1.Size = new System.Drawing.Size(530, 180);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtering";
             // 
             // btnClearFilter
             // 
-            this.btnClearFilter.Location = new System.Drawing.Point(557, 71);
+            this.btnClearFilter.Location = new System.Drawing.Point(450, 73);
             this.btnClearFilter.Name = "btnClearFilter";
             this.btnClearFilter.Size = new System.Drawing.Size(74, 46);
             this.btnClearFilter.TabIndex = 15;
@@ -216,94 +223,140 @@ namespace WatchlistUI
             // 
             // txtScoreFilterMax
             // 
-            this.txtScoreFilterMax.Location = new System.Drawing.Point(183, 62);
+            this.txtScoreFilterMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txtScoreFilterMax.Location = new System.Drawing.Point(282, 87);
+            this.txtScoreFilterMax.MaxLength = 4;
             this.txtScoreFilterMax.Name = "txtScoreFilterMax";
-            this.txtScoreFilterMax.Size = new System.Drawing.Size(100, 20);
+            this.txtScoreFilterMax.Size = new System.Drawing.Size(100, 23);
             this.txtScoreFilterMax.TabIndex = 14;
             // 
             // cmbCategoryFilter
             // 
             this.cmbCategoryFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCategoryFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cmbCategoryFilter.FormattingEnabled = true;
-            this.cmbCategoryFilter.Location = new System.Drawing.Point(77, 116);
+            this.cmbCategoryFilter.Location = new System.Drawing.Point(106, 57);
             this.cmbCategoryFilter.Name = "cmbCategoryFilter";
-            this.cmbCategoryFilter.Size = new System.Drawing.Size(157, 21);
+            this.cmbCategoryFilter.Size = new System.Drawing.Size(157, 24);
             this.cmbCategoryFilter.TabIndex = 10;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(17, 121);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label4.Location = new System.Drawing.Point(20, 60);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 13);
+            this.label4.Size = new System.Drawing.Size(65, 17);
             this.label4.TabIndex = 9;
             this.label4.Text = "Category";
             // 
             // txtDateFilterMax
             // 
-            this.txtDateFilterMax.Location = new System.Drawing.Point(183, 87);
+            this.txtDateFilterMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txtDateFilterMax.Location = new System.Drawing.Point(282, 117);
+            this.txtDateFilterMax.MaxLength = 4;
             this.txtDateFilterMax.Name = "txtDateFilterMax";
-            this.txtDateFilterMax.Size = new System.Drawing.Size(100, 20);
+            this.txtDateFilterMax.Size = new System.Drawing.Size(100, 23);
             this.txtDateFilterMax.TabIndex = 8;
             // 
             // txtDateFilterMin
             // 
-            this.txtDateFilterMin.Location = new System.Drawing.Point(77, 87);
+            this.txtDateFilterMin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txtDateFilterMin.Location = new System.Drawing.Point(106, 117);
+            this.txtDateFilterMin.MaxLength = 4;
             this.txtDateFilterMin.Name = "txtDateFilterMin";
-            this.txtDateFilterMin.Size = new System.Drawing.Size(100, 20);
+            this.txtDateFilterMin.Size = new System.Drawing.Size(80, 23);
             this.txtDateFilterMin.TabIndex = 7;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(17, 90);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label3.Location = new System.Drawing.Point(20, 120);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(30, 13);
+            this.label3.Size = new System.Drawing.Size(74, 17);
             this.label3.TabIndex = 5;
-            this.label3.Text = "Date";
+            this.label3.Text = "Date (Min)";
             // 
             // txtScoreFilterMin
             // 
-            this.txtScoreFilterMin.Location = new System.Drawing.Point(77, 61);
+            this.txtScoreFilterMin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txtScoreFilterMin.Location = new System.Drawing.Point(106, 87);
+            this.txtScoreFilterMin.MaxLength = 4;
             this.txtScoreFilterMin.Name = "txtScoreFilterMin";
-            this.txtScoreFilterMin.Size = new System.Drawing.Size(100, 20);
+            this.txtScoreFilterMin.Size = new System.Drawing.Size(80, 23);
             this.txtScoreFilterMin.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(17, 65);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.Location = new System.Drawing.Point(20, 90);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.Size = new System.Drawing.Size(81, 17);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Score";
+            this.label2.Text = "Score (Min)";
             // 
             // txtTitleFilter
             // 
-            this.txtTitleFilter.Location = new System.Drawing.Point(77, 31);
+            this.txtTitleFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txtTitleFilter.Location = new System.Drawing.Point(106, 27);
             this.txtTitleFilter.Name = "txtTitleFilter";
-            this.txtTitleFilter.Size = new System.Drawing.Size(157, 20);
+            this.txtTitleFilter.Size = new System.Drawing.Size(157, 23);
             this.txtTitleFilter.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 34);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.Location = new System.Drawing.Point(20, 30);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(27, 13);
+            this.label1.Size = new System.Drawing.Size(35, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Title";
             // 
             // cmbCurrentList
             // 
             this.cmbCurrentList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbCurrentList.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.cmbCurrentList.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cmbCurrentList.FormattingEnabled = true;
-            this.cmbCurrentList.Location = new System.Drawing.Point(23, 19);
+            this.cmbCurrentList.Location = new System.Drawing.Point(12, 12);
             this.cmbCurrentList.Name = "cmbCurrentList";
-            this.cmbCurrentList.Size = new System.Drawing.Size(245, 33);
+            this.cmbCurrentList.Size = new System.Drawing.Size(245, 37);
             this.cmbCurrentList.TabIndex = 15;
             this.cmbCurrentList.SelectionChangeCommitted += new System.EventHandler(this.cmbCurrentList_SelectionChangeCommitted);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label5.Location = new System.Drawing.Point(192, 120);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(77, 17);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "Date (Max)";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label6.Location = new System.Drawing.Point(192, 90);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(84, 17);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "Score (Max)";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btnSortTitle);
+            this.groupBox2.Controls.Add(this.btnSortScore);
+            this.groupBox2.Controls.Add(this.btnSortDate);
+            this.groupBox2.Location = new System.Drawing.Point(12, 79);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(100, 180);
+            this.groupBox2.TabIndex = 16;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Sorting";
             // 
             // GeneralUI
             // 
@@ -311,11 +364,9 @@ namespace WatchlistUI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SlateGray;
             this.ClientSize = new System.Drawing.Size(672, 632);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.cmbCurrentList);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btnSortDate);
-            this.Controls.Add(this.btnSortScore);
-            this.Controls.Add(this.btnSortTitle);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnAdd);
@@ -332,6 +383,7 @@ namespace WatchlistUI
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -363,5 +415,8 @@ namespace WatchlistUI
         private System.Windows.Forms.ComboBox cmbCurrentList;
         private System.Windows.Forms.TextBox txtScoreFilterMax;
         private System.Windows.Forms.Button btnClearFilter;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }

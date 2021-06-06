@@ -16,7 +16,6 @@ namespace WatchlistUI
     {
         List<SettingsModel> _settings = new List<SettingsModel>();
         private GeneralUI _generalUI;
-        private const string BackupPath = "../../../WatchlistLibrary/ListBackup/FirstListBackup.csv";
         public SettingsUI(GeneralUI generalUI, List<SettingsModel> settings)
         {
             InitializeComponent();
@@ -107,7 +106,7 @@ namespace WatchlistUI
 
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.InitialDirectory = "C:\\";
                 openFileDialog.Filter = "CSV files (*.csv)|*.csv";
                 openFileDialog.RestoreDirectory = true;
 
@@ -150,32 +149,43 @@ namespace WatchlistUI
 
         private void btnExport1_Click(object sender, EventArgs e)
         {
-            //TODO - Continue backup code
-            List<ItemModel> items = new List<ItemModel>();
-            items.Add(new ItemModel() { ID = 1, Title="asd", Date=2000, Category="fdsfs", Score=8.1 }) ;
-            SaveToFile(items);
+            List<ItemModel> items = SqliteDataAccess.LoadItems("FirstList");
+            List<ItemModel> completedItems = SqliteDataAccess.LoadItems("FirstListCompleted");
+            string BackupPath = "../../../WatchlistLibrary/ListBackup/FirstListBackup_" + DateTime.Now.ToString("yyyyMMdd") + ".csv";
+            SaveToFile(items, completedItems, BackupPath);
         }
 
         private void btnExport2_Click(object sender, EventArgs e)
         {
-
+            List<ItemModel> items = SqliteDataAccess.LoadItems("SecondList");
+            List<ItemModel> completedItems = SqliteDataAccess.LoadItems("SecondListCompleted");
+            string BackupPath = "../../../WatchlistLibrary/ListBackup/FirstListBackup_" + DateTime.Now.ToString("yyyyMMdd") + ".csv";
+            SaveToFile(items, completedItems, BackupPath);
         }
 
         private void btnExport3_Click(object sender, EventArgs e)
         {
-
+            List<ItemModel> items = SqliteDataAccess.LoadItems("ThirdList");
+            List<ItemModel> completedItems = SqliteDataAccess.LoadItems("ThirdListCompleted");
+            string BackupPath = "../../../WatchlistLibrary/ListBackup/FirstListBackup_" + DateTime.Now.ToString("yyyyMMdd") + ".csv";
+            SaveToFile(items, completedItems, BackupPath);
         }
 
-        void SaveToFile(List<ItemModel> items)
+        void SaveToFile(List<ItemModel> items, List<ItemModel> completedItems, string BackupPath)
         {
             List<string> lines = new List<string>();
 
             foreach (ItemModel i in items)
             {
-                lines.Add($"{i.ID}; {i.Title}; {i.Date}; {i.Category}; {i.Score}");
+                lines.Add($"{i.Title}; {i.Date}; {i.Category}; {i.Score}; Onwatch");
+            }
+            foreach (ItemModel c in completedItems)
+            {
+                lines.Add($"{c.Title}; {c.Date}; {c.Category}; {c.Score}; Completed");
             }
 
             File.WriteAllLines(BackupPath, lines);
+            MessageBox.Show("Backup complete!");
         }
 
         // Delete All

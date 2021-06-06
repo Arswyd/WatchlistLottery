@@ -213,7 +213,7 @@ namespace WatchlistUI
         private void btnRoll_Click(object sender, EventArgs e)
         {
             LotteryUI lotteryUI = new LotteryUI(filteredItems, _currentList, this);
-            lotteryUI.Show();
+            lotteryUI.ShowDialog();
         }
 
         private void btnTransfer_Click(object sender, EventArgs e)
@@ -246,20 +246,20 @@ namespace WatchlistUI
         private void btnSettings_Click(object sender, EventArgs e)
         {
             SettingsUI settingsUI = new SettingsUI(this, settings);
-            settingsUI.Show();
+            settingsUI.ShowDialog();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             EditUI editUI = new EditUI(_currentList, this, false);
-            editUI.Show();
+            editUI.ShowDialog();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
             ItemModel item = (ItemModel)dataGridView1.SelectedRows[0].DataBoundItem;
             EditUI editUI = new EditUI(item, _currentList, this, true);
-            editUI.Show();
+            editUI.ShowDialog();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)

@@ -107,9 +107,12 @@ namespace WatchlistUI
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.btnReroll);
             this.Controls.Add(this.pictureBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "LotteryUI";
-            this.ShowIcon = false;
-            this.Text = "Lottery Form";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Lottery";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

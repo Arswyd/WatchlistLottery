@@ -57,12 +57,12 @@ namespace WatchlistUI
 
         private void SetUpDatagridDesign()
         {
-            //dataGridView1.Columns[0].Visible = false;
+            dataGridView1.Columns[0].Visible = false;
             dataGridView1.Columns[0].Width = 30;
-            dataGridView1.Columns[1].Width = 200;
-            dataGridView1.Columns[2].Width = 40;
+            dataGridView1.Columns[1].Width = 250;
+            dataGridView1.Columns[2].Width = 45;
             dataGridView1.Columns[3].Width = 100;
-            dataGridView1.Columns[4].Width = 40;
+            dataGridView1.Columns[4].Width = 45;
         }
 
         private void WireUpComboboxes()
@@ -316,67 +316,13 @@ namespace WatchlistUI
 
         private void btnFilter_Click(object sender, EventArgs e)
         {
-            if (ValidateFiltering())
+            if (InputValidation.ValidateFilters(txtTitleFilter.Text, txtScoreFilterMin.Text, txtScoreFilterMax.Text, txtDateFilterMin.Text, txtDateFilterMax.Text))
             {
                 LoadItemList(_currentList);
             }
             else
             {
                 MessageBox.Show("Imput not valid!");
-            }
-        }
-
-        private bool ValidateFiltering()
-        {
-            double minScore;
-            double maxScore;
-            int minDate = 0;
-            int maxDate = 0;
-
-            bool isDoubleMinScore = double.TryParse(txtScoreFilterMin.Text, out minScore);
-            bool isDoubleMaxScore = double.TryParse(txtScoreFilterMax.Text, out maxScore);
-            bool isIntMinDate = int.TryParse(txtDateFilterMin.Text, out minDate);
-            bool isIntMaxDate = int.TryParse(txtDateFilterMax.Text, out maxDate);
-
-            if (!String.IsNullOrWhiteSpace(txtTitleFilter.Text) && (txtTitleFilter.Text.Contains("\"") || txtTitleFilter.Text.Contains(";")))
-            {
-                return false;
-            }
-            else if (!String.IsNullOrWhiteSpace(txtScoreFilterMin.Text) && (txtScoreFilterMin.Text.Contains('.') || !isDoubleMinScore))
-            {
-                return false;
-            }
-            else if (!String.IsNullOrWhiteSpace(txtScoreFilterMin.Text) && minScore <= 0)
-            {
-                return false;
-            }
-            else if (!String.IsNullOrWhiteSpace(txtScoreFilterMax.Text) && (txtScoreFilterMax.Text.Contains('.') || !isDoubleMaxScore))
-            {
-                return false;
-            }
-            else if (!String.IsNullOrWhiteSpace(txtScoreFilterMax.Text) && (maxScore > 10.0 || maxScore < 0))
-            {
-                return false;
-            }
-            else if (!String.IsNullOrWhiteSpace(txtDateFilterMin.Text) && !isIntMinDate)
-            {
-                return false;
-            }
-            else if (!String.IsNullOrWhiteSpace(txtDateFilterMin.Text) && minDate <= 0)
-            {
-                return false;
-            }
-            else if (!String.IsNullOrWhiteSpace(txtDateFilterMax.Text) && !isIntMaxDate)
-            {
-                return false;
-            }
-            else if (!String.IsNullOrWhiteSpace(txtDateFilterMax.Text) && (maxDate > DateTime.Now.Year || maxDate < 0))
-            {
-                return false;
-            }
-            else
-            {
-                return true;
             }
         }
 

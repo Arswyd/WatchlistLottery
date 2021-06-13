@@ -42,30 +42,55 @@ namespace WatchlistUI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            //TODO - Add validation to form
+            if (ValidateForm())
+            {
+                _item.Title = txtTitle.Text;
+                if (txtScore.Text != "")
+                {
+                    _item.Score = double.Parse(txtScore.Text);
+                }
+                if (txtDate.Text != "")
+                {
+                    _item.Date = int.Parse(txtDate.Text);
+                }
+                _item.Category = cmbCategory.Text;
 
-            _item.Title = txtTitle.Text;
-            if (txtScore.Text != "")
-            {
-                _item.Score = int.Parse(txtScore.Text);
-            }
-            if (txtDate.Text != "")
-            {
-                _item.Date = int.Parse(txtDate.Text);
-            }
-            _item.Category = cmbCategory.Text;
-
-            if (_isExisting)
-            {
-                SqliteDataAccess.EditListItem(_item, _currentList);
-                _generalUI.LoadItemList(_currentList);
+                if (_isExisting)
+                {
+                    SqliteDataAccess.EditListItem(_item, _currentList);
+                    _generalUI.LoadItemList(_currentList);
+                }
+                else
+                {
+                    SqliteDataAccess.AddItemToList(_item, _currentList);
+                    _generalUI.LoadItemList(_currentList);
+                }
+                this.Close();
             }
             else
             {
-                SqliteDataAccess.AddItemToList(_item, _currentList);
-                _generalUI.LoadItemList(_currentList);
+                MessageBox.Show("Imput not valid!");
             }
-            this.Close();
+        }
+
+        private bool ValidateForm()
+        {
+            if (InputValidation.ValidateTitle(txtTitle.Text))
+            {
+                return false;
+            }
+            else if (InputValidation.ValidateScore(txtScore.Text))
+            {
+                return false;
+            }
+            else if (InputValidation.ValidateDate(txtDate.Text))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

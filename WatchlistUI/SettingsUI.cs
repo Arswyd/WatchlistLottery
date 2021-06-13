@@ -53,31 +53,68 @@ namespace WatchlistUI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            // TODO - Add validation to form
-
-            _settings[0].SettingData = txtName1.Text;
-            _settings[1].SettingData = txtCategory1.Text;
-            _settings[2].SettingData = txtName2.Text;
-            _settings[3].SettingData = txtCategory2.Text;
-            _settings[4].SettingData = txtName3.Text;
-            _settings[5].SettingData = txtCategory3.Text;
-
-            if (cmbDefault.Text == _settings[0].SettingData)
+            if (ValidateForm())
             {
-                _settings[6].SettingData = "FirstList";
-            }
-            else if (cmbDefault.Text == _settings[2].SettingData)
-            {
-                _settings[6].SettingData = "SecondList";
-            }
-            else if (cmbDefault.Text == _settings[4].SettingData)
-            {
-                _settings[6].SettingData = "ThirdList";
-            }
+                _settings[0].SettingData = txtName1.Text;
+                _settings[1].SettingData = txtCategory1.Text;
+                _settings[2].SettingData = txtName2.Text;
+                _settings[3].SettingData = txtCategory2.Text;
+                _settings[4].SettingData = txtName3.Text;
+                _settings[5].SettingData = txtCategory3.Text;
 
-            SqliteDataAccess.SaveSettings(_settings);
-            _generalUI.WireUpForm();
-            this.Close();
+                if (cmbDefault.Text == _settings[0].SettingData)
+                {
+                    _settings[6].SettingData = "FirstList";
+                }
+                else if (cmbDefault.Text == _settings[2].SettingData)
+                {
+                    _settings[6].SettingData = "SecondList";
+                }
+                else if (cmbDefault.Text == _settings[4].SettingData)
+                {
+                    _settings[6].SettingData = "ThirdList";
+                }
+
+                SqliteDataAccess.SaveSettings(_settings);
+                _generalUI.WireUpForm();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Imput not valid!");
+            }
+        }
+
+        private bool ValidateForm()
+        {
+            if (InputValidation.ValidateTitle(txtName1.Text))
+            {
+                return false;
+            }
+            else if (InputValidation.ValidateTitle(txtName2.Text))
+            {
+                return false;
+            }
+            else if (InputValidation.ValidateTitle(txtName3.Text))
+            {
+                return false;
+            }
+            else if (InputValidation.ValidateCategory(txtCategory1.Text))
+            {
+                return false;
+            }            
+            else if (InputValidation.ValidateCategory(txtCategory2.Text))
+            {
+                return false;
+            }
+            else if (InputValidation.ValidateCategory(txtCategory3.Text))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

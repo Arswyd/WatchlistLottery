@@ -29,6 +29,7 @@ namespace WatchlistUI
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnRoll = new System.Windows.Forms.Button();
             this.btnOnWatch = new System.Windows.Forms.Button();
@@ -42,6 +43,8 @@ namespace WatchlistUI
             this.btnSortDate = new System.Windows.Forms.Button();
             this.btnFilter = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.btnClearFilter = new System.Windows.Forms.Button();
             this.txtScoreFilterMax = new System.Windows.Forms.TextBox();
             this.cmbCategoryFilter = new System.Windows.Forms.ComboBox();
@@ -54,8 +57,6 @@ namespace WatchlistUI
             this.txtTitleFilter = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbCurrentList = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -69,6 +70,14 @@ namespace WatchlistUI
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView1.Location = new System.Drawing.Point(12, 298);
             this.dataGridView1.MultiSelect = false;
@@ -211,6 +220,26 @@ namespace WatchlistUI
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtering";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label5.Location = new System.Drawing.Point(192, 120);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(77, 17);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "Date (Max)";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label6.Location = new System.Drawing.Point(192, 90);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(84, 17);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "Score (Max)";
+            // 
             // btnClearFilter
             // 
             this.btnClearFilter.Location = new System.Drawing.Point(450, 73);
@@ -325,26 +354,6 @@ namespace WatchlistUI
             this.cmbCurrentList.Size = new System.Drawing.Size(245, 37);
             this.cmbCurrentList.TabIndex = 15;
             this.cmbCurrentList.SelectionChangeCommitted += new System.EventHandler(this.cmbCurrentList_SelectionChangeCommitted);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label5.Location = new System.Drawing.Point(192, 120);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(77, 17);
-            this.label5.TabIndex = 17;
-            this.label5.Text = "Date (Max)";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label6.Location = new System.Drawing.Point(192, 90);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(84, 17);
-            this.label6.TabIndex = 16;
-            this.label6.Text = "Score (Max)";
             // 
             // groupBox2
             // 
